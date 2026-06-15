@@ -1,0 +1,102 @@
+{
+  "name": "worm_v1",
+  "bones": [
+    {
+      "id": "seg0",
+      "parent": null,
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.22,
+      "density": 1.0,
+      "color": [180, 140, 60],
+      "attach_point": [0.0, 0.0]
+    },
+    {
+      "id": "seg1",
+      "parent": "seg0",
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.22,
+      "density": 1.0,
+      "color": [200, 160, 70],
+      "attach_point": [0.0, -0.5]
+    },
+    {
+      "id": "seg2",
+      "parent": "seg1",
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.22,
+      "density": 1.0,
+      "color": [180, 140, 60],
+      "attach_point": [0.0, -0.5]
+    },
+    {
+      "id": "seg3",
+      "parent": "seg2",
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.22,
+      "density": 1.0,
+      "color": [200, 160, 70],
+      "attach_point": [0.0, -0.5]
+    },
+    {
+      "id": "seg4",
+      "parent": "seg3",
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.20,
+      "density": 0.9,
+      "color": [160, 120, 50],
+      "attach_point": [0.0, -0.5]
+    }
+  ],
+  "joints": [
+    {
+      "id": "j01",
+      "bone_a": "seg0",
+      "bone_b": "seg1",
+      "anchor_a": [0.0, -0.25],
+      "anchor_b": [0.0, 0.25],
+      "angle_limit_deg": [-45, 45],
+      "max_motor_torque": 400,
+      "is_motorized": true
+    },
+    {
+      "id": "j12",
+      "bone_a": "seg1",
+      "bone_b": "seg2",
+      "anchor_a": [0.0, -0.25],
+      "anchor_b": [0.0, 0.25],
+      "angle_limit_deg": [-45, 45],
+      "max_motor_torque": 400,
+      "is_motorized": true
+    },
+    {
+      "id": "j23",
+      "bone_a": "seg2",
+      "bone_b": "seg3",
+      "anchor_a": [0.0, -0.25],
+      "anchor_b": [0.0, 0.25],
+      "angle_limit_deg": [-45, 45],
+      "max_motor_torque": 400,
+      "is_motorized": true
+    },
+    {
+      "id": "j34",
+      "bone_a": "seg3",
+      "bone_b": "seg4",
+      "anchor_a": [0.0, -0.25],
+      "anchor_b": [0.0, 0.25],
+      "angle_limit_deg": [-45, 45],
+      "max_motor_torque": 300,
+      "is_motorized": true
+    }
+  ],
+  "metadata": {
+    "generation": 0,
+    "lineage": [],
+    "fitness": null
+  }
+}

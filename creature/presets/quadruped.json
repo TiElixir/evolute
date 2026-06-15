@@ -1,0 +1,182 @@
+{
+  "name": "quadruped_v1",
+  "bones": [
+    {
+      "id": "torso",
+      "parent": null,
+      "shape": "box",
+      "length": 1.1,
+      "width": 0.4,
+      "density": 1.2,
+      "color": [60, 180, 80],
+      "attach_point": [0.0, 0.0]
+    },
+    {
+      "id": "front_thigh_l",
+      "parent": "torso",
+      "shape": "box",
+      "length": 0.45,
+      "width": 0.12,
+      "density": 1.0,
+      "color": [40, 120, 60],
+      "attach_point": [-0.15, 0.35]
+    },
+    {
+      "id": "front_shin_l",
+      "parent": "front_thigh_l",
+      "shape": "box",
+      "length": 0.4,
+      "width": 0.1,
+      "density": 0.9,
+      "color": [80, 200, 100],
+      "attach_point": [0.0, -0.45]
+    },
+    {
+      "id": "front_thigh_r",
+      "parent": "torso",
+      "shape": "box",
+      "length": 0.45,
+      "width": 0.12,
+      "density": 1.0,
+      "color": [40, 120, 60],
+      "attach_point": [0.15, 0.35]
+    },
+    {
+      "id": "front_shin_r",
+      "parent": "front_thigh_r",
+      "shape": "box",
+      "length": 0.4,
+      "width": 0.1,
+      "density": 0.9,
+      "color": [80, 200, 100],
+      "attach_point": [0.0, -0.45]
+    },
+    {
+      "id": "rear_thigh_l",
+      "parent": "torso",
+      "shape": "box",
+      "length": 0.45,
+      "width": 0.12,
+      "density": 1.0,
+      "color": [40, 120, 60],
+      "attach_point": [-0.15, -0.35]
+    },
+    {
+      "id": "rear_shin_l",
+      "parent": "rear_thigh_l",
+      "shape": "box",
+      "length": 0.4,
+      "width": 0.1,
+      "density": 0.9,
+      "color": [80, 200, 100],
+      "attach_point": [0.0, -0.45]
+    },
+    {
+      "id": "rear_thigh_r",
+      "parent": "torso",
+      "shape": "box",
+      "length": 0.45,
+      "width": 0.12,
+      "density": 1.0,
+      "color": [40, 120, 60],
+      "attach_point": [0.15, -0.35]
+    },
+    {
+      "id": "rear_shin_r",
+      "parent": "rear_thigh_r",
+      "shape": "box",
+      "length": 0.4,
+      "width": 0.1,
+      "density": 0.9,
+      "color": [80, 200, 100],
+      "attach_point": [0.0, -0.45]
+    }
+  ],
+  "joints": [
+    {
+      "id": "hip_front_l",
+      "bone_a": "torso",
+      "bone_b": "front_thigh_l",
+      "anchor_a": [-0.15, 0.35],
+      "anchor_b": [0.0, 0.225],
+      "angle_limit_deg": [-50, 50],
+      "max_motor_torque": 700,
+      "is_motorized": true
+    },
+    {
+      "id": "knee_front_l",
+      "bone_a": "front_thigh_l",
+      "bone_b": "front_shin_l",
+      "anchor_a": [0.0, -0.225],
+      "anchor_b": [0.0, 0.2],
+      "angle_limit_deg": [-90, 0],
+      "max_motor_torque": 400,
+      "is_motorized": true
+    },
+    {
+      "id": "hip_front_r",
+      "bone_a": "torso",
+      "bone_b": "front_thigh_r",
+      "anchor_a": [0.15, 0.35],
+      "anchor_b": [0.0, 0.225],
+      "angle_limit_deg": [-50, 50],
+      "max_motor_torque": 700,
+      "is_motorized": true
+    },
+    {
+      "id": "knee_front_r",
+      "bone_a": "front_thigh_r",
+      "bone_b": "front_shin_r",
+      "anchor_a": [0.0, -0.225],
+      "anchor_b": [0.0, 0.2],
+      "angle_limit_deg": [-90, 0],
+      "max_motor_torque": 400,
+      "is_motorized": true
+    },
+    {
+      "id": "hip_rear_l",
+      "bone_a": "torso",
+      "bone_b": "rear_thigh_l",
+      "anchor_a": [-0.15, -0.35],
+      "anchor_b": [0.0, 0.225],
+      "angle_limit_deg": [-50, 50],
+      "max_motor_torque": 700,
+      "is_motorized": true
+    },
+    {
+      "id": "knee_rear_l",
+      "bone_a": "rear_thigh_l",
+      "bone_b": "rear_shin_l",
+      "anchor_a": [0.0, -0.225],
+      "anchor_b": [0.0, 0.2],
+      "angle_limit_deg": [-90, 0],
+      "max_motor_torque": 400,
+      "is_motorized": true
+    },
+    {
+      "id": "hip_rear_r",
+      "bone_a": "torso",
+      "bone_b": "rear_thigh_r",
+      "anchor_a": [0.15, -0.35],
+      "anchor_b": [0.0, 0.225],
+      "angle_limit_deg": [-50, 50],
+      "max_motor_torque": 700,
+      "is_motorized": true
+    },
+    {
+      "id": "knee_rear_r",
+      "bone_a": "rear_thigh_r",
+      "bone_b": "rear_shin_r",
+      "anchor_a": [0.0, -0.225],
+      "anchor_b": [0.0, 0.2],
+      "angle_limit_deg": [-90, 0],
+      "max_motor_torque": 400,
+      "is_motorized": true
+    }
+  ],
+  "metadata": {
+    "generation": 0,
+    "lineage": [],
+    "fitness": null
+  }
+}

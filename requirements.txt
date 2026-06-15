@@ -1,0 +1,6 @@
+torch
+pymunk>=6.0
+pygame>=2.0
+numpy
+pyyaml
+tensorboard

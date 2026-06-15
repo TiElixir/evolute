@@ -1,0 +1,102 @@
+{
+  "name": "biped_v1",
+  "bones": [
+    {
+      "id": "torso",
+      "parent": null,
+      "shape": "box",
+      "length": 0.9,
+      "width": 0.35,
+      "density": 1.2,
+      "color": [220, 80, 60],
+      "attach_point": [0.0, 0.0]
+    },
+    {
+      "id": "thigh_l",
+      "parent": "torso",
+      "shape": "box",
+      "length": 0.55,
+      "width": 0.14,
+      "density": 1.0,
+      "color": [80, 100, 220],
+      "attach_point": [-0.12, -0.45]
+    },
+    {
+      "id": "shin_l",
+      "parent": "thigh_l",
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.11,
+      "density": 0.9,
+      "color": [80, 160, 220],
+      "attach_point": [0.0, -0.55]
+    },
+    {
+      "id": "thigh_r",
+      "parent": "torso",
+      "shape": "box",
+      "length": 0.55,
+      "width": 0.14,
+      "density": 1.0,
+      "color": [80, 100, 220],
+      "attach_point": [0.12, -0.45]
+    },
+    {
+      "id": "shin_r",
+      "parent": "thigh_r",
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.11,
+      "density": 0.9,
+      "color": [80, 160, 220],
+      "attach_point": [0.0, -0.55]
+    }
+  ],
+  "joints": [
+    {
+      "id": "hip_l",
+      "bone_a": "torso",
+      "bone_b": "thigh_l",
+      "anchor_a": [-0.12, -0.45],
+      "anchor_b": [0.0, 0.275],
+      "angle_limit_deg": [-60, 60],
+      "max_motor_torque": 800,
+      "is_motorized": true
+    },
+    {
+      "id": "knee_l",
+      "bone_a": "thigh_l",
+      "bone_b": "shin_l",
+      "anchor_a": [0.0, -0.275],
+      "anchor_b": [0.0, 0.25],
+      "angle_limit_deg": [-100, 0],
+      "max_motor_torque": 500,
+      "is_motorized": true
+    },
+    {
+      "id": "hip_r",
+      "bone_a": "torso",
+      "bone_b": "thigh_r",
+      "anchor_a": [0.12, -0.45],
+      "anchor_b": [0.0, 0.275],
+      "angle_limit_deg": [-60, 60],
+      "max_motor_torque": 800,
+      "is_motorized": true
+    },
+    {
+      "id": "knee_r",
+      "bone_a": "thigh_r",
+      "bone_b": "shin_r",
+      "anchor_a": [0.0, -0.275],
+      "anchor_b": [0.0, 0.25],
+      "angle_limit_deg": [-100, 0],
+      "max_motor_torque": 500,
+      "is_motorized": true
+    }
+  ],
+  "metadata": {
+    "generation": 0,
+    "lineage": [],
+    "fitness": null
+  }
+}

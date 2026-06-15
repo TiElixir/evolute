@@ -1,0 +1,142 @@
+{
+  "name": "tripod_v1",
+  "bones": [
+    {
+      "id": "torso",
+      "parent": null,
+      "shape": "box",
+      "length": 0.7,
+      "width": 0.35,
+      "density": 1.2,
+      "color": [160, 60, 200],
+      "attach_point": [0.0, 0.0]
+    },
+    {
+      "id": "leg_a_upper",
+      "parent": "torso",
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.12,
+      "density": 1.0,
+      "color": [100, 40, 160],
+      "attach_point": [-0.2, -0.35]
+    },
+    {
+      "id": "leg_a_lower",
+      "parent": "leg_a_upper",
+      "shape": "box",
+      "length": 0.45,
+      "width": 0.10,
+      "density": 0.9,
+      "color": [180, 100, 220],
+      "attach_point": [0.0, -0.5]
+    },
+    {
+      "id": "leg_b_upper",
+      "parent": "torso",
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.12,
+      "density": 1.0,
+      "color": [100, 40, 160],
+      "attach_point": [0.2, -0.35]
+    },
+    {
+      "id": "leg_b_lower",
+      "parent": "leg_b_upper",
+      "shape": "box",
+      "length": 0.45,
+      "width": 0.10,
+      "density": 0.9,
+      "color": [180, 100, 220],
+      "attach_point": [0.0, -0.5]
+    },
+    {
+      "id": "leg_c_upper",
+      "parent": "torso",
+      "shape": "box",
+      "length": 0.5,
+      "width": 0.12,
+      "density": 1.0,
+      "color": [100, 40, 160],
+      "attach_point": [0.0, 0.35]
+    },
+    {
+      "id": "leg_c_lower",
+      "parent": "leg_c_upper",
+      "shape": "box",
+      "length": 0.45,
+      "width": 0.10,
+      "density": 0.9,
+      "color": [180, 100, 220],
+      "attach_point": [0.0, -0.5]
+    }
+  ],
+  "joints": [
+    {
+      "id": "hip_a",
+      "bone_a": "torso",
+      "bone_b": "leg_a_upper",
+      "anchor_a": [-0.2, -0.35],
+      "anchor_b": [0.0, 0.25],
+      "angle_limit_deg": [-60, 60],
+      "max_motor_torque": 700,
+      "is_motorized": true
+    },
+    {
+      "id": "knee_a",
+      "bone_a": "leg_a_upper",
+      "bone_b": "leg_a_lower",
+      "anchor_a": [0.0, -0.25],
+      "anchor_b": [0.0, 0.225],
+      "angle_limit_deg": [-90, 0],
+      "max_motor_torque": 450,
+      "is_motorized": true
+    },
+    {
+      "id": "hip_b",
+      "bone_a": "torso",
+      "bone_b": "leg_b_upper",
+      "anchor_a": [0.2, -0.35],
+      "anchor_b": [0.0, 0.25],
+      "angle_limit_deg": [-60, 60],
+      "max_motor_torque": 700,
+      "is_motorized": true
+    },
+    {
+      "id": "knee_b",
+      "bone_a": "leg_b_upper",
+      "bone_b": "leg_b_lower",
+      "anchor_a": [0.0, -0.25],
+      "anchor_b": [0.0, 0.225],
+      "angle_limit_deg": [-90, 0],
+      "max_motor_torque": 450,
+      "is_motorized": true
+    },
+    {
+      "id": "hip_c",
+      "bone_a": "torso",
+      "bone_b": "leg_c_upper",
+      "anchor_a": [0.0, 0.35],
+      "anchor_b": [0.0, 0.25],
+      "angle_limit_deg": [-60, 60],
+      "max_motor_torque": 700,
+      "is_motorized": true
+    },
+    {
+      "id": "knee_c",
+      "bone_a": "leg_c_upper",
+      "bone_b": "leg_c_lower",
+      "anchor_a": [0.0, -0.25],
+      "anchor_b": [0.0, 0.225],
+      "angle_limit_deg": [-90, 0],
+      "max_motor_torque": 450,
+      "is_motorized": true
+    }
+  ],
+  "metadata": {
+    "generation": 0,
+    "lineage": [],
+    "fitness": null
+  }
+}
