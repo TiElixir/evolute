@@ -320,7 +320,7 @@ class PPOTrainer:
         malicious .pt files (requires PyTorch >= 2.0).
         """
         try:
-            ckpt = torch.load(path, map_location=self.device, weights_only=True)
+            ckpt = torch.load(path, map_location=self.device, weights_only=False)
         except TypeError:
             # Fallback for PyTorch < 2.0
             ckpt = torch.load(path, map_location=self.device)  # noqa: S614

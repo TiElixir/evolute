@@ -81,10 +81,11 @@ class Renderer:
             pygame.quit()
             self._initialized = False
 
-    def tick(self, fps: int = 60) -> None:
+    def tick(self, fps: int = 60) -> bool:
         """Advance display clock and pump events. Returns True if quit requested."""
         self.clock.tick(fps)
         pygame.display.flip()
+        return self.poll_quit()
 
     def poll_quit(self) -> bool:
         """Return True if the user closed the window."""

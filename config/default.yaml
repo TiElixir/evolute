@@ -20,9 +20,9 @@ training:
   gamma: 0.99
   gae_lambda: 0.95
   clip_eps: 0.2
-  n_steps: 2048         # rollout length before each PPO update
-  n_epochs: 10          # PPO epochs per update
-  minibatch_size: 256
+  n_steps: 8192         # rollout length before each PPO update
+  n_epochs: 15          # PPO epochs per update
+  minibatch_size: 1024
   entropy_coef: 0.001
   value_coef: 0.5
   max_grad_norm: 0.5

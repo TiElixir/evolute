@@ -76,6 +76,19 @@ def cmd_evolve(args: argparse.Namespace) -> None:
     run_evolution(config, args)
 
 
+def cmd_race(args: argparse.Namespace) -> None:
+    _cuda_info()
+    import yaml
+    config: dict = {}
+    config_path = args.config or "config/default.yaml"
+    if os.path.isfile(config_path):
+        with open(config_path, "r", encoding="utf-8") as f:
+            config = yaml.safe_load(f) or {}
+
+    from evolution.race import run_race
+    run_race(config, args)
+
+
 def cmd_replay(args: argparse.Namespace) -> None:
     """Load a checkpoint and run a rendered evaluation episode."""
     _cuda_info()
@@ -175,6 +188,11 @@ def main() -> None:
     p_replay.add_argument("--device",      default=None)
     p_replay.add_argument("--episodes",    type=int, default=3)
 
+    # --- race ---
+    p_race = sub.add_parser("race", help="Run the visual evolutionary race mode")
+    p_race.add_argument("--genome", default="creature/presets/biped.json")
+    p_race.add_argument("--config", default="config/default.yaml")
+
     args = parser.parse_args()
 
     dispatch = {
@@ -182,6 +200,7 @@ def main() -> None:
         "train":  cmd_train,
         "evolve": cmd_evolve,
         "replay": cmd_replay,
+        "race": cmd_race,
     }
     dispatch[args.command](args)
 

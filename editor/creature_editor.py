@@ -169,14 +169,16 @@ class Slider:
         knob_x = self.rect.x + fill_w
         pygame.draw.circle(surf, ACCENT, (knob_x, self.rect.centery), 8)
         lbl = font.render(f"{self.value:.2f}", True, TEXT_DIM)
-        surf.blit(lbl, (self.rect.right - lbl.get_width(), self.rect.y - 16))
+        surf.blit(lbl, (self.rect.right - lbl.get_width(), self.rect.y - 18))
 
     def handle_event(self, event: pygame.event.Event) -> bool:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            knob_x = self.rect.x + int((self.value - self.min_val) /
-                                       max(self.max_val - self.min_val, 1e-6) * self.rect.width)
-            if abs(event.pos[0] - knob_x) < 14 and abs(event.pos[1] - self.rect.centery) < 14:
+            if self.rect.collidepoint(event.pos):
                 self._dragging = True
+                t = (event.pos[0] - self.rect.x) / max(self.rect.width, 1)
+                t = max(0.0, min(1.0, t))
+                self.value = self.min_val + t * (self.max_val - self.min_val)
+                return True
         if event.type == pygame.MOUSEBUTTONUP:
             self._dragging = False
         if event.type == pygame.MOUSEMOTION and self._dragging:
@@ -228,6 +230,7 @@ class CreatureEditor:
 
         self.selected_bone_id: Optional[str] = None
         self.selected_joint_id: Optional[str] = None
+        self._dragging_joint_id: Optional[str] = None
 
         # Physics test drive
         self.test_drive = False
@@ -432,13 +435,31 @@ class CreatureEditor:
                     self._start_add_bone_drag(canvas_pos)
                 else:
                     self._try_select(canvas_pos)
+                    if self.selected_joint_id:
+                        self._dragging_joint_id = self.selected_joint_id
 
-        if event.type == pygame.MOUSEMOTION and self._adding_bone and self._add_drag_start:
-            self._add_drag_end = event.pos
+        if event.type == pygame.MOUSEMOTION:
+            if self._adding_bone and self._add_drag_start:
+                self._add_drag_end = event.pos
+            elif self._dragging_joint_id:
+                world_pos = self._screen_to_world(event.pos)
+                joint = self.genome.get_joint_by_id(self._dragging_joint_id)
+                if joint and self.creature and joint.bone_a in self.creature.bodies:
+                    body_a = self.creature.bodies[joint.bone_a]
+                    local_pt = body_a.world_to_local(world_pos)
+                    ap_x = round(local_pt.x / PIXELS_PER_METER, 3)
+                    ap_y = round(local_pt.y / PIXELS_PER_METER, 3)
+                    joint.anchor_a = [ap_x, ap_y]
+                    child_bone = self.genome.get_bone_by_id(joint.bone_b)
+                    if child_bone:
+                        child_bone.attach_point = [ap_x, ap_y]
+                    self._rebuild_creature()
 
         if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             if self._adding_bone and self._add_drag_start and self._add_drag_end:
                 self._finish_add_bone_drag()
+            if self._dragging_joint_id:
+                self._dragging_joint_id = None
 
         # Camera scroll
         if event.type == pygame.KEYDOWN:

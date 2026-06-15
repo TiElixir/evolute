@@ -75,7 +75,7 @@ def main() -> None:
     # Build environment
     # ------------------------------------------------------------------ #
     from environment.creature_env import CreatureEnv
-    env = CreatureEnv(genome, config=config, render=False)
+    env = CreatureEnv(genome, config=config, render=args.render)
     print(f"  obs_dim={env.observation_dim}  action_dim={env.action_dim}")
 
     # ------------------------------------------------------------------ #

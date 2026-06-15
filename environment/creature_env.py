@@ -165,7 +165,9 @@ class CreatureEnv:
                 },
                 camera_follow=True,
             )
-            self._renderer.tick(fps=60)
+            quit_requested = self._renderer.tick(fps=60)
+            if quit_requested:
+                raise KeyboardInterrupt("Pygame window closed")
 
         return obs, reward, done, info
 
@@ -245,8 +247,6 @@ class CreatureEnv:
             shape.filter = pymunk.ShapeFilter(categories=FOOT_CATEGORY)
 
         # Collision handler: foot ↔ ground
-        handler = self.space.add_collision_handler(0, 0)  # catch-all
-
         env_ref = self
 
         def begin(arbiter, space, data):
@@ -255,7 +255,6 @@ class CreatureEnv:
                 for fid in env_ref.creature.foot_ids:
                     if s is env_ref.creature.shapes.get(fid):
                         env_ref._foot_in_contact[fid] = True
-            return True
 
         def separate(arbiter, space, data):
             shapes = arbiter.shapes
@@ -263,10 +262,8 @@ class CreatureEnv:
                 for fid in env_ref.creature.foot_ids:
                     if s is env_ref.creature.shapes.get(fid):
                         env_ref._foot_in_contact[fid] = False
-            return True
 
-        handler.begin = begin
-        handler.separate = separate
+        self.space.on_collision(None, None, begin=begin, separate=separate)
 
     def _update_foot_contacts(self) -> None:
         """Sync foot contact flags into the creature observation."""
